@@ -29,4 +29,4 @@ This guide walks you through the project structure and how to run the applicatio
 
 
 # next-level
- This repository covers the basics of Redux-Saga. If you're ready to take your understanding to the next level, check out https://www.google.com/
+ This repository covers the basics of Redux-Saga. If you're ready to take your understanding to the next level, check out https://github.com/RaaidhaM/redux-saga-book-reader-refined
