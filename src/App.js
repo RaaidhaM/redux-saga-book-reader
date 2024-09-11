@@ -1,25 +1,32 @@
-import logo from './logo.svg';
-import './App.css';
+import React from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import { fetchBooksRequested } from '../src/app/actions/userActions'
 
 function App() {
+  const dispatch = useDispatch()
+  const books = useSelector(state => state.books)
+  const status = useSelector(state => state.status)
+
+  const handleFetchBooks = () => {
+    dispatch(fetchBooksRequested())
+  }
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    <div>
+    <h1>Redux-Saga Book Reader</h1>
+    <button onClick={handleFetchBooks}>Fetch Books</button>
+
+    {status === 'INPROGRESS' && <p>Processing Request...</p>}
+    {status === 'COMPLETED' && (
+       <ul>
+          {books.map(book => (
+             <li key={book.isbn}>{book.name}</li>
+          ))}
+       </ul>
+    )}
+    {status === 'FAILED' && <p>Failed to fetch books</p>}
+ </div>
+  )
 }
 
-export default App;
+export default App
